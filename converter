@@ -97,11 +97,18 @@ main = do
     if head cmd == "convert_trades" then do
         csvData <- readFile ("./" ++ last cmd)
         writeFile "newTrades.csv" $ convert_trades csvData
+        putStrLn "\nFile converted\n"
+        main
     else if head cmd == "convert_deposits" then do
         csvData <- readFile ("./" ++ last cmd)
         writeFile "newDeposits.csv" $ convert_deposits csvData
+        putStrLn "\nFile converted\n"
+        main
     else if head cmd == "convert_withdrawals" then do
         csvData <- readFile ("./" ++ last cmd)
         writeFile "newWithdrawals.csv" $ convert_withdrawals csvData
-    else
-        putStr "Error, wrong command"
+        putStrLn "\nFile converted\n"
+        main
+    else do
+        putStrLn "Error, wrong command. Try again\n"
+        main
